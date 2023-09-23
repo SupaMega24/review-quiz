@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="quiz">
+
+<script>
+
+const questions = [
+  {
+    question: "What is the capital of France?",
+    choices: ["Paris", "London", "Berlin"],
+    answer: "Paris"
+  },
+  {
+    question: "Who wrote The Lord of the Rings?", 
+    choices: ["J. K. Rowling", "J. R. R. Tolkien", "Dan Brown"],
+    answer: "J. R. R. Tolkien"
+  }
+];
+
+function buildQuiz() {
+  const output = [];
+
+  questions.forEach( (currentQuestion, questionNumber) => {
+
+    const answers = [];
+
+    for(letter in currentQuestion.choices) {
+
+      answers.push(
+        `<label>
+          <input type="radio" name="question${questionNumber}" value="${letter}">
+          ${currentQuestion.choices[letter]}
+        </label>`
+      );
+    }
+
+    output.push(
+      `<div class="question"> ${currentQuestion.question} </div>
+      <div class="answers"> ${answers.join('')} </div>`
+    );
+  });
+
+  quizContainer.innerHTML = output.join('');
+}
+
+
+const quizContainer = document.getElementById('quiz');
+buildQuiz();
+
+</script>
+</div>
+</body>
+</html>
